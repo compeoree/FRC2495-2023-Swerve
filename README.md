@@ -12,3 +12,9 @@ The drivetrain is composed of four MK4i Swerve Modules, each configured with two
 
 * SPARK MAX Firmware v1.6.2 - Adds features that are required for swerve
 * REVLib v2023.1.2 - Includes APIs for the new firmware features
+
+
+## Vendor Library Links for 2024
+https://software-metadata.revrobotics.com/REVLib-2024.json
+https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2024-latest.json
+https://dev.studica.com/releases/2024/NavX.json
