@@ -30,10 +30,10 @@ import frc.robot.Ports;
  */
 public class SwerveDrivetrain extends SubsystemBase {
 
-	public static final double FRONT_LEFT_VIRTUAL_OFFSET_RADIANS = -1.653; // adjust as needed so that virtual (turn) position of wheel is zero when straight
-	public static final double FRONT_RIGHT_VIRTUAL_OFFSET_RADIANS = -1.650; // adjust as needed so that virtual (turn) position of wheel is zero when straight
-	public static final double REAR_LEFT_VIRTUAL_OFFSET_RADIANS = -0.987; // adjust as needed so that virtual (turn) position of wheel is zero when straight
-	public static final double REAR_RIGHT_VIRTUAL_OFFSET_RADIANS = +1.021; // adjust as needed so that virtual (turn) position of wheel is zero when straight
+	public static final double FRONT_LEFT_VIRTUAL_OFFSET_RADIANS = -2.8208; // adjust as needed so that virtual (turn) position of wheel is zero when straight
+	public static final double FRONT_RIGHT_VIRTUAL_OFFSET_RADIANS = -1.2684; // adjust as needed so that virtual (turn) position of wheel is zero when straight
+	public static final double REAR_LEFT_VIRTUAL_OFFSET_RADIANS = -2.1014; // adjust as needed so that virtual (turn) position of wheel is zero when straight
+	public static final double REAR_RIGHT_VIRTUAL_OFFSET_RADIANS = +1.1965; // adjust as needed so that virtual (turn) position of wheel is zero when straight
 
 	public static final int GYRO_ORIENTATION = -1; // might be able to merge with kGyroReversed
 
