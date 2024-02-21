@@ -163,48 +163,6 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("AccurateRoll", m_robotContainer.getAccelerometer().getAccurateRoll());
 		SmartDashboard.putNumber("FilteredAccurateRoll", m_robotContainer.getAccelerometer().getFilteredAccurateRoll());
 
-
-		SmartDashboard.putBoolean("Elevator Forward Limit Switch", m_robotContainer.getElevator().getForwardLimitSwitchState());
-		SmartDashboard.putBoolean("Elevator Reverse Limit Switch", m_robotContainer.getElevator().getReverseLimitSwitchState());
-		SmartDashboard.putNumber("Elevator Enc Position", m_robotContainer.getElevator().getEncoderPosition());
-		SmartDashboard.putBoolean("Elevator IsMoving?", m_robotContainer.getElevator().isMoving());
-		SmartDashboard.putNumber("Elevator Target", m_robotContainer.getElevator().getTarget());
-		SmartDashboard.putBoolean("Elevator isStalled?", m_robotContainer.getElevator().isStalled());
-		SmartDashboard.putBoolean("Elevator isDown", m_robotContainer.getElevator().isDown());
-		SmartDashboard.putBoolean("Elevator isMidway", m_robotContainer.getElevator().isMidway());
-		SmartDashboard.putBoolean("Elevator isUp", m_robotContainer.getElevator().isUp());
-		SmartDashboard.putBoolean("Elevator isDangerous", m_robotContainer.getElevator().isDangerous());
-
-		SmartDashboard.putBoolean("Drawer Forward Limit Switch", m_robotContainer.getDrawer().getForwardLimitSwitchState());
-		SmartDashboard.putBoolean("Drawer Reverse Limit Switch", m_robotContainer.getDrawer().getReverseLimitSwitchState());
-		SmartDashboard.putNumber("Drawer Enc Position", m_robotContainer.getDrawer().getEncoderPosition());
-		SmartDashboard.putBoolean("Drawer IsMoving?", m_robotContainer.getDrawer().isMoving());
-		SmartDashboard.putNumber("Drawer Target", m_robotContainer.getDrawer().getTarget());
-		SmartDashboard.putBoolean("Drawer isStalled?", m_robotContainer.getDrawer().isStalled());
-		SmartDashboard.putBoolean("Drawer isRetracted", m_robotContainer.getDrawer().isRetracted());
-		SmartDashboard.putBoolean("Drawer isMidway", m_robotContainer.getDrawer().isMidway());
-		SmartDashboard.putBoolean("Drawer isExtended", m_robotContainer.getDrawer().isExtended());
-		SmartDashboard.putBoolean("Drawer isDangerous", m_robotContainer.getDrawer().isDangerous());
-
-		SmartDashboard.putBoolean("Neck Reverse Limit Switch", m_robotContainer.getNeck().getReverseLimitSwitchState());
-		SmartDashboard.putBoolean("Neck Forward Limit Switch", m_robotContainer.getNeck().getForwardLimitSwitchState());
-		SmartDashboard.putNumber("Neck Position", m_robotContainer.getNeck().getPosition());
-		SmartDashboard.putNumber("Neck Enc Position", m_robotContainer.getNeck().getEncoderPosition());
-		SmartDashboard.putBoolean("Neck IsMoving?", m_robotContainer.getNeck().isMoving());
-		SmartDashboard.putNumber("Neck Target", m_robotContainer.getNeck().getTarget());
-		SmartDashboard.putBoolean("Neck isStalled?", m_robotContainer.getNeck().isStalled());
-		SmartDashboard.putBoolean("Neck isDown", m_robotContainer.getNeck().isDown());
-		SmartDashboard.putBoolean("Neck isMidway", m_robotContainer.getNeck().isMidway());
-		SmartDashboard.putBoolean("Neck isUp", m_robotContainer.getNeck().isUp());
-		SmartDashboard.putBoolean("Neck isDangerous", m_robotContainer.getNeck().isDangerous());
-
-		SmartDashboard.putBoolean("Roller IsRolling?", m_robotContainer.getRoller().isRolling());
-		SmartDashboard.putBoolean("Roller IsReleasing?", m_robotContainer.getRoller().isReleasing());
-
-		SmartDashboard.putString("Mouth Position", m_robotContainer.getMouth().getPosition().toString());
-		SmartDashboard.putBoolean("Mouth isDangerous", m_robotContainer.getMouth().isDangerous());
-
-
 		SmartDashboard.putString("Auton selected", m_robotContainer.getAutonChooser().getSelected());	
 		SmartDashboard.putString("Game piece", m_robotContainer.getGamePieceChooser().getSelected());
 		SmartDashboard.putString("Start position", m_robotContainer.getStartPositionChooser().getSelected());

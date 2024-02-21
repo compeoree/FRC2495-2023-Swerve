@@ -38,8 +38,7 @@ public class CustomAuton extends SequentialCommandGroup {
      * @param autonOption_in   auton option
     */
     public CustomAuton(String gamePiece_in, String startPosition_in, String mainTarget_in, String cameraOption_in,
-            String sonarOption_in, String autonOption_in, SwerveDrivetrain drivetrain, RobotContainer container,
-			Elevator elevator, Drawer drawer, Roller roller, Neck neck, Mouth mouth) {
+            String sonarOption_in, String autonOption_in, SwerveDrivetrain drivetrain, RobotContainer container) {
 
 		gamePiece = gamePiece_in;
 		startPosition = startPosition_in;
@@ -107,7 +106,7 @@ public class CustomAuton extends SequentialCommandGroup {
 								//TODO
 								break;
 							case RobotContainer.AUTON_OPTION_JUST_DROP_CUBE:
-								addCommands(new DropTopCubeAndShrink(container, elevator, drawer, roller));
+								// addCommands(new DropTopCubeAndShrink(container, elevator, drawer, roller));
 								break;
 							case RobotContainer.AUTON_OPTION_ALSO_DOCK:
 								//TODO
@@ -267,16 +266,16 @@ public class CustomAuton extends SequentialCommandGroup {
 								//TODO
 								break;
 							case RobotContainer.AUTON_OPTION_JUST_DROP_CUBE:
-								addCommands(new DropTopCubeAndShrink(container, elevator, drawer, roller));
+								// addCommands(new DropTopCubeAndShrink(container, elevator, drawer, roller));
 								break;
 							case RobotContainer.AUTON_OPTION_ALSO_DOCK:
 								//TODO
 								break;
 							case RobotContainer.AUTON_OPTION_LEAVE_COMMUNITY:
-								addCommands(new StartingPositionTwoOneCubeAndLeaveCommunity(drivetrain, container, elevator, drawer, roller, neck, mouth));
+								// addCommands(new StartingPositionTwoOneCubeAndLeaveCommunity(drivetrain, container, elevator, drawer, roller, neck, mouth));
 								break;
 							case RobotContainer.AUTON_OPTION_ALSO_PICKUP_CONE:
-								addCommands(new StartingPositionTwoOneCubeAndLeaveCommunityAndPickupCube(drivetrain, container, elevator, drawer, roller, neck, mouth));
+								// addCommands(new StartingPositionTwoOneCubeAndLeaveCommunityAndPickupCube(drivetrain, container, elevator, drawer, roller, neck, mouth));
 								break;
 							case RobotContainer.AUTON_OPTION_ALSO_PICKUP_CUBE:
 								//TODO
@@ -329,7 +328,7 @@ public class CustomAuton extends SequentialCommandGroup {
 								//TODO
 								break;
 							case RobotContainer.AUTON_OPTION_ALSO_PICKUP_CUBE:
-								addCommands(new StartingPositionTwoTwoCube(drivetrain, container, elevator, drawer, roller, neck, mouth));
+								// addCommands(new StartingPositionTwoTwoCube(drivetrain, container, elevator, drawer, roller, neck, mouth));
 								break;
 							default:
 								// nothing
@@ -426,7 +425,7 @@ public class CustomAuton extends SequentialCommandGroup {
 								//TODO
 								break;
 							case RobotContainer.AUTON_OPTION_JUST_DROP_CUBE:
-								addCommands(new DropTopCubeAndShrink(container, elevator, drawer, roller));
+								// addCommands(new DropTopCubeAndShrink(container, elevator, drawer, roller));
 								break;
 							case RobotContainer.AUTON_OPTION_ALSO_DOCK:
 								//TODO
@@ -584,7 +583,7 @@ public class CustomAuton extends SequentialCommandGroup {
 								//TODO
 								break;
 							case RobotContainer.AUTON_OPTION_JUST_DROP_CUBE:
-								addCommands(new DropTopCubeAndShrink(container, elevator, drawer, roller));
+								// addCommands(new DropTopCubeAndShrink(container, elevator, drawer, roller));
 								break;
 							case RobotContainer.AUTON_OPTION_ALSO_DOCK:
 								//TODO
@@ -612,7 +611,7 @@ public class CustomAuton extends SequentialCommandGroup {
 								//TODO
 								break;
 							case RobotContainer.AUTON_OPTION_ALSO_DOCK:
-								addCommands(new StartingPositionFourTwoCubeEngage(drivetrain, container, elevator, drawer, roller, neck, mouth));
+								// addCommands(new StartingPositionFourTwoCubeEngage(drivetrain, container, elevator, drawer, roller, neck, mouth));
 								break;
 							case RobotContainer.AUTON_OPTION_LEAVE_COMMUNITY:
 								//TODO
@@ -742,19 +741,19 @@ public class CustomAuton extends SequentialCommandGroup {
 								//TODO
 								break;
 							case RobotContainer.AUTON_OPTION_JUST_DROP_CUBE:
-								addCommands(new DropTopCubeAndShrink(container, elevator, drawer, roller));
+								// addCommands(new DropTopCubeAndShrink(container, elevator, drawer, roller));
 								break;
 							case RobotContainer.AUTON_OPTION_ALSO_DOCK:
 								//TODO
 								break;
 							case RobotContainer.AUTON_OPTION_LEAVE_COMMUNITY:
-								addCommands(new StartingPositionFiveOneCubeAndLeaveCommunity(drivetrain, container, elevator, drawer, roller, neck, mouth));
+								// addCommands(new StartingPositionFiveOneCubeAndLeaveCommunity(drivetrain, container, elevator, drawer, roller, neck, mouth));
 								break;
 							case RobotContainer.AUTON_OPTION_ALSO_PICKUP_CONE:
 								//TODO
 								break;
 							case RobotContainer.AUTON_OPTION_ALSO_PICKUP_CUBE:
-								addCommands(new StartingPositionFiveOneCubeAndLeaveCommunity(drivetrain, container, elevator, drawer, roller, neck, mouth));
+								// addCommands(new StartingPositionFiveOneCubeAndLeaveCommunity(drivetrain, container, elevator, drawer, roller, neck, mouth));
 								break;
 							default:
 								// nothing
@@ -804,7 +803,7 @@ public class CustomAuton extends SequentialCommandGroup {
 								//TODO
 								break;
 							case RobotContainer.AUTON_OPTION_ALSO_PICKUP_CUBE:
-								addCommands(new StartingPositionFiveTwoCube(drivetrain, container, elevator, drawer, roller, neck, mouth));
+								// addCommands(new StartingPositionFiveTwoCube(drivetrain, container, elevator, drawer, roller, neck, mouth));
 								break;
 							default:
 								// nothing
@@ -900,7 +899,7 @@ public class CustomAuton extends SequentialCommandGroup {
 								//TODO
 								break;
 							case RobotContainer.AUTON_OPTION_JUST_DROP_CUBE:
-								addCommands(new DropTopCubeAndShrink(container, elevator, drawer, roller));
+								// addCommands(new DropTopCubeAndShrink(container, elevator, drawer, roller));
 								break;
 							case RobotContainer.AUTON_OPTION_ALSO_DOCK:
 								//TODO

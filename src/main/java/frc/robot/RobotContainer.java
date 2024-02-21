@@ -21,15 +21,14 @@ import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 //import edu.wpi.first.wpilibj.XboxController.Button;
 //import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 //import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController; 
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 //import edu.wpi.first.wpilibj2.command.InstantCommand;
 //import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -47,21 +46,8 @@ import frc.robot.interfaces.INeck;
 import frc.robot.interfaces.IRoller;*/
 
 import frc.robot.subsystems.SwerveDrivetrain;
-import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Drawer;
-import frc.robot.subsystems.Neck;
-import frc.robot.subsystems.Roller;
-import frc.robot.subsystems.Compressor;
-import frc.robot.subsystems.Mouth;
-import frc.robot.subsystems.Indicator;
 
 import frc.robot.commands.drivetrain.*;
-import frc.robot.commands.elevator.*;
-import frc.robot.commands.drawer.*;
-import frc.robot.commands.neck.*;
-import frc.robot.commands.roller.*;
-import frc.robot.commands.mouth.*;
-import frc.robot.commands.indicator.*;
 import frc.robot.commands.groups.*;
 //import frc.robot.commands.gamepad.*;
 import frc.robot.auton.*;
@@ -162,35 +148,10 @@ public class RobotContainer {
 
 	private final SwerveDrivetrain drivetrain = new SwerveDrivetrain();
 
-	private final WPI_TalonSRX drawer_master = new WPI_TalonSRX(Ports.CAN.DRAWER);
-
-	private final /*I*/Drawer drawer = new Drawer(drawer_master);
-
-	private final WPI_TalonSRX elevator_master = new WPI_TalonSRX(Ports.CAN.ELEVATOR_MASTER);
-
-	private final WPI_VictorSPX elevator_follower = new WPI_VictorSPX(Ports.CAN.ELEVATOR_FOLLOWER);
-
-	private final /*I*/Elevator elevator = new Elevator(elevator_master, elevator_follower);
-
-	private final WPI_TalonFX neck_master = new WPI_TalonFX(Ports.CAN.NECK);
-	
-	private final /*I*/Neck neck = new Neck(neck_master);
-
-	private final WPI_TalonSRX roller_master = new WPI_TalonSRX(Ports.CAN.ROLLER);
-	
-	private final /*I*/Roller roller = new Roller(roller_master);
-	
-	// pneumatic devices
-
-	private final Compressor compressor = new Compressor();
-
-	private final Mouth mouth = new Mouth();
 
 	// misc
 
 	private final Field2d field = new Field2d(); //  a representation of the field
-
-	private final Indicator indicator = new Indicator(null);
 
 	// The driver's and copilot's joystick(s) and controller(s)
 
@@ -288,13 +249,6 @@ public class RobotContainer {
 					-MathUtil.applyDeadband(joyMain.getZ(), JOYSTICK_AXIS_THRESHOLD),
 					true, true),
 				drivetrain));
-		
-		roller.setDefaultCommand(new RollerStopForever(roller)); // we stop by default
-
-		compressor.checkCompressor(); //we compress in the background
-
-		indicator.setDefaultCommand(new IndicatorScrollRainbow(indicator)); // temp
-
 	}
 
 	/**
@@ -336,18 +290,6 @@ public class RobotContainer {
 			//.onTrue(new DrivetrainTurnAngleUsingPidController(drivetrain, 90));
 
 
-		joyMain.button(7)
-			.whileTrue(new RollerJoystickControl(roller, drivetrain, getMainJoystick()));
-		
-		joyMain.button(8)
-			.whileTrue(new NeckJoystickControl(neck, drivetrain, getMainJoystick()));
-		
-		joyMain.button(9)
-			.whileTrue(new DrawerJoystickControl(drawer, drivetrain, getMainJoystick()));
-		
-		joyMain.button(10)
-			.whileTrue(new ElevatorJoystickControl(elevator, drivetrain, getMainJoystick()));
-
 		//joyMain.button(11)
 			//.onTrue(new DrivetrainZeroHeading(drivetrain));
 		
@@ -357,85 +299,8 @@ public class RobotContainer {
 				
 		// copilot (gamepad)
 		
-		copilotGamepad.a()
-			.whileTrue(new RollerRelease(roller));
-		
-		copilotGamepad.b()
-			.whileTrue(new RollerRoll(roller));
-
-		copilotGamepad.x()
-			.onTrue(new MouthSafeClose(mouth, neck, getCopilotGamepad()));
-
-		copilotGamepad.y()
-			.onTrue(new MouthOpen(mouth));
-
 		copilotGamepad.back()
 			.onTrue(new DrivetrainAndGyroReset(drivetrain));
-
-		copilotGamepad.start()
-			.onTrue(new AlmostEverythingStop(elevator, drawer, neck, roller));
-
-
-		copilotGamepad.leftTrigger()
-			.onTrue(new DrawerRetractWithStallDetection(drawer));
-
-		copilotGamepad.rightTrigger()
-			.onTrue(new DrawerExtendWithStallDetection(drawer));
-
-
-		copilotGamepad.povDown()
-			.onTrue(new ElevatorMoveDownWithStallDetection(elevator));
-
-		copilotGamepad.povLeft()
-			.onTrue(new ElevatorMoveMidwayWithStallDetection(elevator));
-
-		copilotGamepad.povRight()
-			.onTrue(new ElevatorMoveMidwayWithStallDetection(elevator));
-
-		copilotGamepad.povUp()
-			.onTrue(new ElevatorMoveUpWithStallDetection(elevator));
-
-
-		copilotGamepad.leftBumper()
-			.onTrue(new NeckSafeMoveUpWithStallDetection(neck, mouth, getCopilotGamepad()));
-
-		copilotGamepad.rightBumper()
-			.onTrue(new NeckMoveDownWithStallDetection(neck));
-
-
-		copilotGamepad.leftStick()
-			.onTrue(new RollerTimedRoll(roller, 3));
-			//.onTrue(new GamepadRumble(getCopilotGamepad(),false));			
-
-		copilotGamepad.rightStick()
-			.onTrue(new RollerTimedRelease(roller, 3));
-			//.onTrue(new GamepadRumble(getCopilotGamepad(),false));
-
-
-		copilotGamepad.axisGreaterThan(LY,GAMEPAD_AXIS_THRESHOLD)
-			.whileTrue(new ElevatorGamepadControl(elevator, getCopilotGamepad()));
-
-		copilotGamepad.axisLessThan(LY,-GAMEPAD_AXIS_THRESHOLD)
-			.whileTrue(new ElevatorGamepadControl(elevator, getCopilotGamepad()));
-
-		/*copilotGamepad.axisGreaterThan(LX,GAMEPAD_AXIS_THRESHOLD)
-			.whileTrue();
-
-		copilotGamepad.axisLessThan(LX,-GAMEPAD_AXIS_THRESHOLD)
-			.whileTrue();*/
-
-		copilotGamepad.axisGreaterThan(RY,GAMEPAD_AXIS_THRESHOLD)
-			.whileTrue(new NeckGamepadControl(neck, getCopilotGamepad()));
-
-		copilotGamepad.axisLessThan(RY,-GAMEPAD_AXIS_THRESHOLD)
-			.whileTrue(new NeckGamepadControl(neck, getCopilotGamepad()));
-
-		copilotGamepad.axisGreaterThan(RX,GAMEPAD_AXIS_THRESHOLD)
-			.whileTrue(new DrawerGamepadControl(drawer, getCopilotGamepad()));
-
-		copilotGamepad.axisLessThan(RX,-GAMEPAD_AXIS_THRESHOLD)
-			.whileTrue(new DrawerGamepadControl(drawer, getCopilotGamepad()));	
-			
 	}
 
 	/**
@@ -444,6 +309,7 @@ public class RobotContainer {
 	 * @return the command to run in autonomous
 	 */
 	public Command getAutonomousCommand() {
+
 		autonSelected = autonChooser.getSelected();
 		System.out.println("Auton selected: " + autonSelected);	
 
@@ -500,13 +366,9 @@ public class RobotContainer {
 				return new MoveInNonBumpKTurn(drivetrain, this);
 				//break;
 
-			case AUTON_CUSTOM:
-				return new CustomAuton(gamePieceSelected, startPosition, mainTarget, cameraOption, sonarOption, autonOption,
-					drivetrain, this, elevator, drawer, roller, neck, mouth);
-				//break;
-
 			case AUTON_DO_NOTHING:
-				return null;
+				return new PathPlannerAuto("New Path");	
+				// return null;
 				//break;
 				
 			default:
@@ -589,31 +451,6 @@ public class RobotContainer {
 	public SwerveDrivetrain getDrivetrain()
 	{
 		return drivetrain;
-	}
-
-	public Elevator getElevator()
-	{
-		return elevator;
-	}
-
-	public Drawer getDrawer()
-	{
-		return drawer;
-	}
-
-	public Neck getNeck()
-	{
-		return neck;
-	}
-
-	public Roller getRoller()
-	{
-		return roller;
-	}
-
-	public Mouth getMouth()
-	{
-		return mouth;
 	}
 
 	public Joystick getMainJoystick()
