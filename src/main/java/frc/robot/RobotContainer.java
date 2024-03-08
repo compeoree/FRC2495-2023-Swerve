@@ -46,7 +46,9 @@ import frc.robot.interfaces.INeck;
 import frc.robot.interfaces.IRoller;*/
 
 import frc.robot.subsystems.SwerveDrivetrain;
-
+import frc.robot.subsystems.Climber;
+import frc.robot.commands.climber.Elevator;
+import frc.robot.commands.climber.ElevatorUp;
 import frc.robot.commands.drivetrain.*;
 import frc.robot.commands.groups.*;
 //import frc.robot.commands.gamepad.*;
@@ -147,6 +149,8 @@ public class RobotContainer {
 	// motorized devices
 
 	private final SwerveDrivetrain drivetrain = new SwerveDrivetrain();
+	private final Climber climber = new Climber();
+
 
 
 	// misc
@@ -270,9 +274,11 @@ public class RobotContainer {
 		joyMain.povDown()
 			.onTrue(new DrivetrainOppositeHeading(drivetrain));	
 
-
+		// joyMain.button(2)
+		// 	.whileTrue(new DrivetrainSetXFormation(drivetrain));	
+		
 		joyMain.button(2)
-			.whileTrue(new DrivetrainSetXFormation(drivetrain));	
+			.onTrue(new ElevatorUp(climber));
 			
 		joyMain.button(3)
 			.onTrue(new MoveInLShapeInReverse(drivetrain, this, 3));

@@ -5,24 +5,34 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj2.command.Command;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
-  private final CANSparkMax m_climbFront;
-	private final CANSparkMax m_climbBack;
+  public final CANSparkMax m_climbFront;
+	public final CANSparkMax m_climbBack;
   private final DigitalInput limitSwitch = new DigitalInput(1);
+  public static boolean isMovingUp = false;
+    Climber Climber = new Climber();
     
   /** Creates a new Climber. */
   public Climber() {
     m_climbFront = new CANSparkMax(11, MotorType.kBrushed);
     m_climbBack = new CANSparkMax(12, MotorType.kBrushed);
+    m_climbFront.setIdleMode(IdleMode.kBrake);
+    m_climbBack.setIdleMode(IdleMode.kBrake);
+  }
+
+  public static void toggle_isMovingUp() {
+    isMovingUp = !isMovingUp;
   }
 
   public void moveUp() {
-
+    Climber.m_climbFront.set(0.1);
   }
 
   public void moveDown() {
