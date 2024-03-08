@@ -236,16 +236,16 @@ public class Ports {
 		/**
 		 * PWM ports
 		 */
-		public static class PWM {
-			public static final int LED_STRIP = 9;
-		}
+		// public static class PWM {
+		// 	public static final int LED_STRIP = 9;
+		// }
 
 		/**
 		 * USB cameras
 		 */
-		public static class UsbCamera {
-			public static final int PRIMARY_CAMERA = 0;
-			public static final int BOTTOM_CAMERA = 1;
-			public static final int TOP_CAMERA = 2;
-		}
+		// public static class UsbCamera {
+		// 	public static final int PRIMARY_CAMERA = 0;
+		// 	public static final int BOTTOM_CAMERA = 1;
+		// 	public static final int TOP_CAMERA = 2;
+		// }
 }
