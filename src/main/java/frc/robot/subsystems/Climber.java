@@ -17,8 +17,7 @@ public class Climber extends SubsystemBase {
 	public final CANSparkMax m_climbBack;
   private final DigitalInput limitSwitch = new DigitalInput(1);
   public static boolean isMovingUp = false;
-    Climber Climber = new Climber();
-    
+
   /** Creates a new Climber. */
   public Climber() {
     m_climbFront = new CANSparkMax(11, MotorType.kBrushed);
@@ -32,11 +31,18 @@ public class Climber extends SubsystemBase {
   }
 
   public void moveUp() {
-    Climber.m_climbFront.set(0.1);
+    m_climbFront.set(0.4);
+    m_climbBack.set(0.4);
   }
 
   public void moveDown() {
-    
+    m_climbFront.set(-0.4);
+    m_climbBack.set(-0.4);
+  }
+
+  public void stopClimb() {
+    m_climbFront.set(0);
+    m_climbBack.set(0);
   }
 
   @Override
